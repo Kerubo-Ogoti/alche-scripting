@@ -5,15 +5,16 @@ import requests
 
 
 def top_ten(subreddit):
-    """Print the titles of the first ten hot posts of a subreddit."""
+    """Print the titles of the first ten hot posts."""
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
-    headers = {"User-Agent": "ALCHE API Advanced"}
-    params = {"limit": 10}
+    headers = {
+        "User-Agent": "Mozilla/5.0 (ALCHE API Advanced)"
+    }
 
     response = requests.get(
         url,
         headers=headers,
-        params=params,
+        params={"limit": 10},
         allow_redirects=False
     )
 
@@ -23,6 +24,10 @@ def top_ten(subreddit):
 
     data = response.json()
     posts = data.get("data", {}).get("children", [])
+
+    if not posts:
+        print(None)
+        return
 
     for post in posts:
         print(post.get("data", {}).get("title"))

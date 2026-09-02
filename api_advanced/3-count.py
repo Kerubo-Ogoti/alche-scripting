@@ -14,7 +14,6 @@ def count_words(subreddit, word_list):
         words[word] = words.get(word, 0) + 1
 
     counts = {}
-
     _count_words(subreddit, words, counts)
 
     sorted_counts = sorted(
@@ -65,4 +64,4 @@ def _count_words(subreddit, words, counts, after=None):
 
     if after is not None:
         _count_words(subreddit, words, counts, after)
-           
+        
